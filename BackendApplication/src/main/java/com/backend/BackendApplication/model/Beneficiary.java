@@ -1,0 +1,79 @@
+package com.backend.BackendApplication.model;
+
+import java.math.BigDecimal;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "beneficiaries")
+public class Beneficiary {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    private String name;
+
+    @Column(name = "account_number", nullable = false)
+    private Long beneficiaryAccountNumber;
+
+    @Column(name = "bank_name", nullable = false)
+    private String beneficiaryBankName;
+
+    @Column(name = "max_transfer_limit", nullable = false)
+    private BigDecimal maxTransferLimit;
+
+    // getters and setters to modify the fields
+
+    public Long getBeneficiaryId() {
+        return id;
+    }
+
+    public void setBeneficiaryId(Long id) {
+        this.id = id;
+    }
+
+    public User getBeneficiaryUser() {
+        return user;
+    }
+
+    public void setBeneficiaryUser(User user) {
+        this.user = user;
+    }
+
+    public String getBeneficiaryName() {
+        return name;
+    }
+
+    public void setBeneficiaryName(String name) {
+        this.name = name;
+    }
+
+    public Long getBeneficiaryAccountNumber() {
+        return beneficiaryAccountNumber;
+    }
+
+    public void setBeneficiaryAccountNumber(Long beneficiaryAccountNumber) {
+        this.beneficiaryAccountNumber = beneficiaryAccountNumber;
+    }
+
+    public String getBankName() {
+        return beneficiaryBankName;
+    }
+
+    public void setbeneficiaryBankName(String beneficiaryBankName) {
+        this.beneficiaryBankName = beneficiaryBankName;
+    }
+
+    public BigDecimal getMaxTransferLimit() {
+        return maxTransferLimit;
+    }
+
+    public void setMaxTransferLimit(BigDecimal maxTransferLimit) {
+        this.maxTransferLimit = maxTransferLimit;
+    }
+
+}
