@@ -5,7 +5,16 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> {
-    // if any customers is adding amount to user bank account (i.e Beneficiary)
+
+    /**
+     * define: The customer is saving the beneficiary’s details so they can transfer
+     * money to them later.
+     * (Real world ex):
+     * Alice and Bob are friends.
+     * Alice wants to transfer money to Bob’s bank account using her online banking
+     * app.
+     *
+     */
 
     // Find beneficiaries by name (case-insensitive)
     List<Beneficiary> findByNameIgnoreCase(String name);
