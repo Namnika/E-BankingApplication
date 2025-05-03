@@ -16,10 +16,10 @@ public class Beneficiary {
     private String name;
 
     @Column(name = "account_number", nullable = false)
-    private String beneficiaryAccountNumber;
+    private String accountNumber;
 
     @Column(name = "bank_name", nullable = false)
-    private String beneficiaryBankName;
+    private String bankName;
 
     @Column(name = "max_transfer_limit", nullable = false)
     private Double maxTransferLimit;
@@ -51,19 +51,19 @@ public class Beneficiary {
     }
 
     public String getBeneficiaryAccountNumber() {
-        return beneficiaryAccountNumber;
+        return accountNumber;
     }
 
-    public void setBeneficiaryAccountNumber(String beneficiaryAccountNumber) {
-        this.beneficiaryAccountNumber = beneficiaryAccountNumber;
+    public void setBeneficiaryAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 
     public String getBankName() {
-        return beneficiaryBankName;
+        return bankName;
     }
 
-    public void setbeneficiaryBankName(String beneficiaryBankName) {
-        this.beneficiaryBankName = beneficiaryBankName;
+    public void setbeneficiaryBankName(String bankName) {
+        this.bankName = bankName;
     }
 
     public Double getMaxTransferLimit() {

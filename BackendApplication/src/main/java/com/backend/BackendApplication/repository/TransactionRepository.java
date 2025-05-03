@@ -10,16 +10,16 @@ import com.backend.BackendApplication.model.Transaction;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
     // Find all transactions sent by a user
-    List<Transaction> findBySenderID(Long senderId);
+    List<Transaction> findBySenderId(Long senderId);
 
     // Find all transactions received by a user
-    List<Transaction> findByReceiverID(Long receiverId);
+    List<Transaction> findByReceiverId(Long receiverId);
 
     // Find all transactions sent by a user in a date range (as sender)
-    List<Transaction> findBySenderIDAndTransactionDateBetween(Long senderID, LocalDateTime start, LocalDateTime end);
+    List<Transaction> findBySenderIdAndTransactionDateBetween(Long senderId, LocalDateTime start, LocalDateTime end);
 
     // Find all transactions receive by a user in a date range (as receiver)
-    List<Transaction> findByReceiverIDAndTransactionDateBetween(Long receiverID, LocalDateTime start,
+    List<Transaction> findByReceiverIdAndTransactionDateBetween(Long receiverId, LocalDateTime start,
             LocalDateTime end);
 
     // find all transactions with a specific status (e.g., SUCCESS, FAILED)
@@ -29,5 +29,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     List<Transaction> findByAmountGreaterThan(BigDecimal amount);
 
     // Get a latest 10 transaction for a user (as sender)
-    List<Transaction> findTop10BySenderIDOrderByTransactionDateDesc(Long senderId);
+    List<Transaction> findTop10BySenderIdOrderByTransactionDateDesc(Long senderId);
 }

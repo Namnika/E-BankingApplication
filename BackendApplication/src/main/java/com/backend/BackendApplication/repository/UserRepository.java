@@ -19,7 +19,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
 	// Custom Methods/Queries:
 	// find user by email
-	Optional<User> findbyEmail(String email);
+	Optional<User> findByEmail(String email);
 
 	// check if user exists by email
 	boolean existsByEmail(String email);
@@ -28,7 +28,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	List<User> findByRole(String role);
 
 	// find users by name (case-insensitive)
-	List<User> findByNameIgnoreCase(String name);
+	List<User> findByFullNameIgnoreCase(String fullName);
 
 	// delete user by email
 	void deleteByEmail(String email);

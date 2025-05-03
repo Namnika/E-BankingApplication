@@ -20,8 +20,8 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
     List<Beneficiary> findByNameIgnoreCase(String name);
 
     // check if beneficiary exists for a user with a specific account number
-    boolean existByUserIDAndAccountNumber(Long userID, String accountNumber);
+    boolean existsByUserIdAndAccountNumber(Long userId, String accountNumber);
 
     // delete a beneficiary by user and account number
-    void deleteByUserIDAndAccountNumber(Long userID, String accountNumber);
+    void deleteByUserIdAndAccountNumber(Long userId, String accountNumber);
 }
