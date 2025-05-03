@@ -1,7 +1,5 @@
 package com.backend.BackendApplication.model;
 
-import java.math.BigDecimal;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -24,7 +22,7 @@ public class Beneficiary {
     private String beneficiaryBankName;
 
     @Column(name = "max_transfer_limit", nullable = false)
-    private BigDecimal maxTransferLimit;
+    private Double maxTransferLimit;
 
     // getters and setters to modify the fields
 
@@ -68,11 +66,11 @@ public class Beneficiary {
         this.beneficiaryBankName = beneficiaryBankName;
     }
 
-    public BigDecimal getMaxTransferLimit() {
+    public Double getMaxTransferLimit() {
         return maxTransferLimit;
     }
 
-    public void setMaxTransferLimit(BigDecimal maxTransferLimit) {
+    public void setMaxTransferLimit(Double maxTransferLimit) {
         this.maxTransferLimit = maxTransferLimit;
     }
 
