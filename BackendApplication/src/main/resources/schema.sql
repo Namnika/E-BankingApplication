@@ -13,7 +13,7 @@ CREATE TABLE
         email VARCHAR(255) UNIQUE,
         phone_number VARCHAR(20) NOT NULL,
         full_name VARCHAR(255) NOT NULL,
-        account_number BIGINT NOT NULL UNIQUE,
+        account_number VARCHAR(255) NOT NULL UNIQUE,
         address VARCHAR(255) NOT NULL,
         available_balance DECIMAL(15, 2) NOT NULL DEFAULT 0.00,
         role VARCHAR(255) NOT NULL,
@@ -26,7 +26,7 @@ CREATE TABLE
         id BIGINT AUTO_INCREMENT PRIMARY KEY,
         user_id BIGINT NOT NULL,
         name VARCHAR(255) NOT NULL,
-        account_number BIGINT NOT NULL,
+        account_number VARCHAR(255) NOT NULL,
         bank_name VARCHAR(255) NOT NULL,
         max_transfer_limit DECIMAL(15, 2) NOT NULL,
         FOREIGN KEY (user_id) REFERENCES users (id)

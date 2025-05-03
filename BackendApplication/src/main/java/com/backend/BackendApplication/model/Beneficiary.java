@@ -18,7 +18,7 @@ public class Beneficiary {
     private String name;
 
     @Column(name = "account_number", nullable = false)
-    private Long beneficiaryAccountNumber;
+    private String beneficiaryAccountNumber;
 
     @Column(name = "bank_name", nullable = false)
     private String beneficiaryBankName;
@@ -52,11 +52,11 @@ public class Beneficiary {
         this.name = name;
     }
 
-    public Long getBeneficiaryAccountNumber() {
+    public String getBeneficiaryAccountNumber() {
         return beneficiaryAccountNumber;
     }
 
-    public void setBeneficiaryAccountNumber(Long beneficiaryAccountNumber) {
+    public void setBeneficiaryAccountNumber(String beneficiaryAccountNumber) {
         this.beneficiaryAccountNumber = beneficiaryAccountNumber;
     }
 

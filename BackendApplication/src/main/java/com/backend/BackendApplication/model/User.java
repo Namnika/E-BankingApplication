@@ -24,7 +24,7 @@ public class User {
     private String fullName;
 
     @Column(name = "account_number", nullable = false, unique = true)
-    private Long accountNumber;
+    private String accountNumber;
 
     private String address;
 
@@ -93,11 +93,11 @@ public class User {
         this.role = role;
     }
 
-    public Long getAccountNumber() {
+    public String getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(Long accountNumber) {
+    public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
 
