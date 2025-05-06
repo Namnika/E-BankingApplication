@@ -1,7 +1,6 @@
 package com.backend.BackendApplication.repository;
 
 import com.backend.BackendApplication.model.Beneficiary;
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
