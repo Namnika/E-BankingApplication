@@ -27,12 +27,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	// check if user exists by email
 	boolean existsByEmail(String email);
 
-	// find user by role (eg. CUSTOMER, ADMIN)
-	List<User> findByRole(String role);
-
 	// find users by name (case-insensitive)
 	List<User> findByFullNameIgnoreCase(String fullName);
 
-	// delete user by email
-	void deleteByEmail(String email);
 }
