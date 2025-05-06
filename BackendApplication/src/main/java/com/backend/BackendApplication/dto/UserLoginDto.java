@@ -7,5 +7,5 @@ import lombok.Setter;
 @Setter
 public class UserLoginDto {
     private String emailOrPhone; // either checks phone number or email for login
-    private String passwordd;
+    private String password;
 }
