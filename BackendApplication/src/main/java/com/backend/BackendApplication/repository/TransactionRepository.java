@@ -9,18 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.backend.BackendApplication.model.Transaction;
 
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
-    // Find all transactions sent by a user
-    List<Transaction> findBySenderId(Long senderId);
-
-    // Find all transactions received by a user
-    List<Transaction> findByReceiverId(Long receiverId);
 
     // Find all transactions sent by a user in a date range (as sender)
     List<Transaction> findBySenderIdAndTransactionDateBetween(Long senderId, LocalDateTime start, LocalDateTime end);
-
-    // Find all transactions receive by a user in a date range (as receiver)
-    List<Transaction> findByReceiverIdAndTransactionDateBetween(Long receiverId, LocalDateTime start,
-            LocalDateTime end);
 
     // find all transactions with a specific status (e.g., SUCCESS, FAILED)
     List<Transaction> findByStatus(String status);
