@@ -25,8 +25,7 @@ public class Transaction {
 	@Column(name = "transaction_date")
 	private LocalDateTime transactionDate;
 
-	@Enumerated(EnumType.STRING)
-	private TransactionStatus status;
+	private String status;
 
 	// getters and setters to modify the fields
 
@@ -70,11 +69,11 @@ public class Transaction {
 		this.transactionDate = transactionDate;
 	}
 
-	public TransactionStatus getTransactionStatus() {
+	public String getTransactionStatus() {
 		return status;
 	}
 
-	public void setTransactionStatus(TransactionStatus status) {
+	public void setTransactionStatus(String status) {
 		this.status = status;
 	}
 }
