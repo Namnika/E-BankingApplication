@@ -65,7 +65,7 @@ public class Transaction {
 		return transactionDate;
 	}
 
-	public void setTransactionAmount(LocalDateTime transactionDate) {
+	public void setTransactionDateTime(LocalDateTime transactionDate) {
 		this.transactionDate = transactionDate;
 	}
 
