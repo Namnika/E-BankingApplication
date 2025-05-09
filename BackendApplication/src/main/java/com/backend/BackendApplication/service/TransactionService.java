@@ -34,6 +34,12 @@ public class TransactionService {
 		User receiver = userRepository.findById(dto.getReceiverId())
 				.orElseThrow(() -> new RuntimeException("Receiver Not Found!"));
 
+		// Check if sender has sufficient balance
+		if (sender.getAvailableBalance().compareTo(dto.getAmount()) < 0) {
+			throw new RuntimeException("Insufficient balance!");
+		}
+
+		// Create transaction
 		Transaction transaction = new Transaction();
 		transaction.setTransactionSender(sender);
 		transaction.setTransactionReceiver(receiver);
@@ -41,10 +47,91 @@ public class TransactionService {
 		transaction.setTransactionStatus("PENDING");
 		transaction.setTransactionDateTime(LocalDateTime.now());
 
-		Transaction saved = transactionRepository.save(transaction);
+		try {
+			// update balances (try-catch)
+			// debit from sender (deduct)
 
+			sender.setAvailableBalance(sender.getAvailableBalance().subtract(dto.getAmount()));
+
+			// credit to receiver (add)
+			receiver.setAvailableBalance(receiver.getAvailableBalance().add(dto.getAmount()));
+
+			// save updated user balances
+			userRepository.save(sender);
+			userRepository.save(receiver);
+
+			// saved transaction
+			Transaction saved = transactionRepository.save(transaction);
+
+			return mapToResponseDto(saved);
+
+		} catch (Exception e) {
+			throw new RuntimeException("Transaction failed!" + e);
+		}
+
+	}
+
+	// Method to deposit money
+	public TransactionResponseDto depositMoney(Long userId, BigDecimal amount) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new RuntimeException("User Not Found!"));
+
+		if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+			throw new RuntimeException("Deposit amount must be greater than zero!");
+		}
+
+		// Create deposit transaction
+		Transaction transaction = new Transaction();
+		transaction.setTransactionSender(user); // Self
+		transaction.setTransactionReceiver(user); // Self
+		transaction.setTransactionAmount(amount);
+		transaction.setTransactionStatus("SUCCESS");
+		transaction.setTransactionDateTime(LocalDateTime.now());
+
+		user.setAvailableBalance(user.getAvailableBalance().add(amount));
+		userRepository.save(user);
+
+		Transaction saved = transactionRepository.save(transaction);
+		return mapToResponseDto(saved);
+	}
+
+	// Method to withdraw money
+	public TransactionResponseDto withdrawMoney(Long userId, BigDecimal amount) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new RuntimeException("User Not Found!"));
+
+		if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+			throw new RuntimeException("Withdrawal amount must be greater than zero!");
+		}
+
+		// Check sufficient balance
+		if (user.getAvailableBalance().compareTo(amount) < 0) {
+			throw new RuntimeException("Insufficient balance for withdrawal!");
+		}
+
+		// Create withdrawal transaction
+		Transaction transaction = new Transaction();
+		transaction.setTransactionSender(user); // Self
+		transaction.setTransactionReceiver(user); // Self
+		transaction.setTransactionAmount(amount);
+		transaction.setTransactionStatus("SUCCESS");
+		transaction.setTransactionDateTime(LocalDateTime.now());
+
+		// Update user balance
+		user.setAvailableBalance(user.getAvailableBalance().subtract(amount));
+		userRepository.save(user);
+
+		Transaction saved = transactionRepository.save(transaction);
 		return mapToResponseDto(saved);
 
+	}
+
+	// Method to check balance
+	public BigDecimal checkBalance(Long userId) {
+		User user = userRepository.findById(userId)
+				.orElseThrow(() -> new RuntimeException("User Not Found!"));
+
+		return user.getAvailableBalance();
 	}
 
 	// UPDATE: update transaction status
