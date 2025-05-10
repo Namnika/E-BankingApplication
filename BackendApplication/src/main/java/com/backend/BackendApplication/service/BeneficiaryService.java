@@ -1,7 +1,11 @@
 package com.backend.BackendApplication.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.backend.BackendApplication.dto.BeneficiaryRequestDto;
 import com.backend.BackendApplication.dto.BeneficiaryResponseDto;
@@ -18,6 +22,15 @@ public class BeneficiaryService {
 
 	@Autowired
 	private UserRepository userRepository;
+
+	public List<Beneficiary> getAllBeneficiaries() {
+		return beneficiaryRepository.findAll();
+	}
+
+	public Beneficiary getBeneficiaryById(Long id) {
+		return beneficiaryRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Beneficiary not found"));
+	}
 
 	// CREATE: Add a new beneficiary
 	public BeneficiaryResponseDto addBeneficiary(BeneficiaryRequestDto dto) {
