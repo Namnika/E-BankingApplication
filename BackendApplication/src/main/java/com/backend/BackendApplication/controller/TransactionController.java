@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.BackendApplication.service.TransactionService;
+
+import jakarta.validation.Valid;
+
 import com.backend.BackendApplication.dto.DepositWithdrawRequestDto;
 import com.backend.BackendApplication.dto.TransactionRequestDto;
 import com.backend.BackendApplication.dto.TransactionResponseDto;
@@ -32,51 +34,41 @@ public class TransactionController {
 
 	// Create new transaction
 	@PostMapping("/transfer")
-	public ResponseEntity<?> createTransaction(@RequestBody TransactionRequestDto requestDto) {
-		try {
-			TransactionResponseDto response = transactionService.createTransaction(requestDto);
-			return ResponseEntity.ok(response);
-		} catch (RuntimeException e) {
-			Map<String, String> error = new HashMap<>();
-			error.put("error", e.getMessage());
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-		}
+	public ResponseEntity<TransactionResponseDto> createTransaction(
+			@Valid @RequestBody TransactionRequestDto requestDto) {
+		TransactionResponseDto response = transactionService.createTransaction(requestDto);
+		return ResponseEntity.ok(response);
 	}
 
 	// Get top 10 latest transactions (display on transactions's page)
 	@GetMapping("/users/{senderId}/latest")
-	public List<TransactionResponseDto> getLatestTransactions(@PathVariable Long senderId) {
-		return transactionService.findTop10TransactionBySender(senderId);
+	public ResponseEntity<List<TransactionResponseDto>> getLatestTransactions(@PathVariable Long senderId) {
+		return ResponseEntity.ok(transactionService.findTop10TransactionBySender(senderId));
 	}
 
 	// Deposit money
 	@PostMapping("/deposit/{userId}")
-	public TransactionResponseDto depositMoney(@PathVariable Long userId,
-			@RequestBody DepositWithdrawRequestDto request) {
-		return transactionService.depositMoney(userId, request.getAmount());
+	public ResponseEntity<TransactionResponseDto> depositMoney(
+			@PathVariable Long userId,
+			@Valid @RequestBody DepositWithdrawRequestDto request) {
+		return ResponseEntity.ok(transactionService.depositMoney(userId, request.getAmount()));
 	}
 
 	// Withdraw money
 	@PostMapping("/withdraw/{userId}")
-	public TransactionResponseDto withdrawMoney(@PathVariable Long userId,
-			@RequestBody DepositWithdrawRequestDto request) {
-		return transactionService.withdrawMoney(userId, request.getAmount());
+	public ResponseEntity<TransactionResponseDto> withdrawMoney(@PathVariable Long userId,
+			@Valid @RequestBody DepositWithdrawRequestDto request) {
+		return ResponseEntity.ok(transactionService.withdrawMoney(userId, request.getAmount()));
 	}
 
 	// Get net balance (display only text)
 	@GetMapping("/api/balance/{userId}")
 	public ResponseEntity<Map<String, Object>> checkBalance(@PathVariable Long userId) {
-		try {
-			BigDecimal balance = transactionService.checkBalance(userId);
-			Map<String, Object> response = new HashMap<>();
-			response.put("balance", balance);
-			response.put("message", "Balance retrieved successfully");
-			return ResponseEntity.ok(response);
-		} catch (RuntimeException e) {
-			Map<String, Object> error = new HashMap<>();
-			error.put("error", e.getMessage());
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
-		}
+		BigDecimal balance = transactionService.checkBalance(userId);
+		Map<String, Object> response = new HashMap<>();
+		response.put("balance", balance);
+		response.put("message", "Balance retrieved successfully");
+		return ResponseEntity.ok(response);
 	}
 
 	// Get all transactions status
@@ -85,9 +77,10 @@ public class TransactionController {
 	 * GET /transactions/status/FAILED - Get all failed transactions
 	 * GET /transactions/status/PENDING - Get all pending transactions
 	 */
+
 	@GetMapping("/status/{status}")
-	public List<TransactionResponseDto> getTransactionByStatus(@PathVariable String status) {
-		return transactionService.findTransactionStatus(status);
+	public ResponseEntity<List<TransactionResponseDto>> getTransactionByStatus(@PathVariable String status) {
+		return ResponseEntity.ok(transactionService.findTransactionStatus(status));
 	}
 
 	// Get transactions greater than amount
@@ -96,9 +89,10 @@ public class TransactionController {
 	 * $1000
 	 * GET /transactions/amount?amount=500.50 - Get all transactions above $500.50
 	 */
-	@GetMapping("/amount?amount={amount}")
-	public List<TransactionResponseDto> getTransactionAmount(@RequestParam BigDecimal amount) {
-		return transactionService.findTransactionAboveAmount(amount);
+
+	@GetMapping("/amount")
+	public ResponseEntity<List<TransactionResponseDto>> getTransactionAmount(@RequestParam BigDecimal amount) {
+		return ResponseEntity.ok(transactionService.findTransactionAboveAmount(amount));
 	}
 
 	// Get transactions done by sender with date range
@@ -107,11 +101,12 @@ public class TransactionController {
 	 * transactions done by sender 1 on or after 2023-01-01T00:00:00
 	 * 
 	 */
-	@GetMapping("/sender/{senderId}?startDate={startDate}&endDate={endDate}")
-	public List<TransactionResponseDto> getTransactionsBySenderAndDateRange(@PathVariable Long senderId,
+	@GetMapping("/sender/{senderId}")
+	public ResponseEntity<List<TransactionResponseDto>> getTransactionsBySenderAndDateRange(
+			@PathVariable Long senderId,
 			@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") LocalDateTime startDate,
 			@RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'") LocalDateTime endDate) {
-		return transactionService.findTransactionsBySenderAndDateRange(senderId, startDate, endDate);
+		return ResponseEntity.ok(transactionService.findTransactionsBySenderAndDateRange(senderId, startDate, endDate));
 	}
 
 }
