@@ -15,7 +15,7 @@ public class CorsConfig {
         CorsConfiguration config = new CorsConfiguration();
         
         // Allow all origins for development (restrict in production)
-        config.addAllowedOrigin("http://localhost:3000"); // Your React app URL
+        config.addAllowedOrigin("http://localhost:3000"); // frontend app URL
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         config.setAllowCredentials(true);
