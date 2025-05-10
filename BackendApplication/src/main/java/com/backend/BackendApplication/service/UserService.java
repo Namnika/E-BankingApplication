@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.backend.BackendApplication.dto.UserLoginDto;
 import com.backend.BackendApplication.dto.UserRegistrationDto;
@@ -19,6 +20,9 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
 	// CREATE: Register a new user
 	public UserResponseDto registerUser(UserRegistrationDto dto) { // (store user's data from registration page)
 
@@ -27,13 +31,15 @@ public class UserService {
 			throw new RuntimeException("Email is already in use!");
 		}
 
+		// Hash the password before saving
+		String hashedPassword = passwordEncoder.encode(dto.getPassword());
 		// otherwise create new user
 
 		User user = new User();
 		user.setUsername(dto.getUsername());
 
 		// HASH PASSWORDS !
-		user.setPassword(dto.getPassword());
+		user.setPassword(hashedPassword);
 		user.setEmail(dto.getEmail());
 		user.setPhoneNumber(dto.getPhoneNumber());
 		user.setFullName(dto.getFullName());
@@ -89,12 +95,17 @@ public class UserService {
 
 		User user = userOpt.orElseThrow(() -> new RuntimeException("Invalid Email or Phone Number!"));
 
-		if (!dto.getPassword().equals(user.getPassword())) {
-			throw new RuntimeException("Invalid Password!");
+		// 2. Validate password
+		if (!validateUser(dto.getPassword(), user.getPassword())) {
+			throw new RuntimeException("Invalid password");
 		}
 
 		return mapToResponseDto(user);
 
+	}
+
+	public boolean validateUser(String rawPassword, String hashedPassword) {
+		return passwordEncoder.matches(rawPassword, hashedPassword);
 	}
 
 	// Search other users for adding beneficiaries (add in Bneficiary controller)
