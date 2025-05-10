@@ -29,7 +29,7 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	@GetMapping("/root")
+	@GetMapping("/hello-world")
 	public String root() {
 		return "Hello World!";
 	}
