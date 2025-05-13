@@ -44,7 +44,7 @@ public class TransactionService {
 		transaction.setTransactionSender(sender);
 		transaction.setTransactionReceiver(receiver);
 		transaction.setTransactionAmount(dto.getAmount());
-		transaction.setTransactionStatus("PENDING");
+		transaction.setTransactionStatus("SUCCESS");
 		transaction.setTransactionDateTime(LocalDateTime.now());
 
 		try {
@@ -69,6 +69,22 @@ public class TransactionService {
 			throw new RuntimeException("Transaction failed!" + e);
 		}
 
+	}
+
+	// to get all users by admin
+	public List<TransactionResponseDto> getAllTransactions() {
+		List<Transaction> transactions = transactionRepository.findAll();
+		return transactions.stream().map(this::mapToResponseDto).collect(Collectors.toList());
+	}
+
+	// DELETE: delete the transaction
+	public void deleteTransaction(Long id) {
+		// Check if transaction exists
+		Transaction transaction = transactionRepository.findById(id)
+				.orElseThrow(() -> new RuntimeException("Transaction not found"));
+
+		// Delete the transaction
+		transactionRepository.delete(transaction);
 	}
 
 	// Method to deposit money
