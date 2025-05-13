@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,12 +43,23 @@ public class TransactionController {
 	}
 
 	// Get top 10 latest transactions (display on transactions's page)
+	// Only the user themselves or admin can view their transactions
+	@PreAuthorize("hasRole('ADMIN') or #senderId == authentication.principal.user.id")
 	@GetMapping("/users/{senderId}/latest")
 	public ResponseEntity<List<TransactionResponseDto>> getLatestTransactions(@PathVariable Long senderId) {
 		return ResponseEntity.ok(transactionService.findTop10TransactionBySender(senderId));
 	}
 
+	// Only admin can view all transactions
+	@PreAuthorize("hasRole('ADMIN')")
+	@GetMapping
+	public ResponseEntity<List<TransactionResponseDto>> getAllTransactions() {
+		return ResponseEntity.ok(transactionService.getAllTransactions());
+
+	}
+
 	// Deposit money
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deposit/{userId}")
 	public ResponseEntity<TransactionResponseDto> depositMoney(
 			@PathVariable Long userId,
@@ -55,6 +68,7 @@ public class TransactionController {
 	}
 
 	// Withdraw money
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/withdraw/{userId}")
 	public ResponseEntity<TransactionResponseDto> withdrawMoney(@PathVariable Long userId,
 			@Valid @RequestBody DepositWithdrawRequestDto request) {
@@ -97,7 +111,9 @@ public class TransactionController {
 
 	// Get transactions done by sender with date range
 	/*
-	 * eg: GET /transactions/sender/1?startDate=2023-01-01T00:00:00 - Get all
+	 * eg: GET
+	 * /transactions/sender/1?startDate=2023-01-01T00:00:00&endDate=2026-01-01T00:00
+	 * :00 - Get all
 	 * transactions done by sender 1 on or after 2023-01-01T00:00:00
 	 * 
 	 */
@@ -109,4 +125,18 @@ public class TransactionController {
 		return ResponseEntity.ok(transactionService.findTransactionsBySenderAndDateRange(senderId, startDate, endDate));
 	}
 
+	@DeleteMapping("/{id}")
+	@PreAuthorize("hasRole('ADMIN')") // Only admin can delete transactions
+	public ResponseEntity<Map<String, String>> deleteTransaction(@PathVariable Long id) {
+		try {
+			transactionService.deleteTransaction(id);
+			Map<String, String> response = new HashMap<>();
+			response.put("message", "Transaction deleted successfully!");
+			return ResponseEntity.ok(response);
+		} catch (RuntimeException e) {
+			Map<String, String> error = new HashMap<>();
+			error.put("error", e.getMessage());
+			return ResponseEntity.badRequest().body(error);
+		}
+	}
 }

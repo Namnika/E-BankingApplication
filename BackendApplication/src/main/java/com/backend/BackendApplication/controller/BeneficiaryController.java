@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -40,6 +41,8 @@ public class BeneficiaryController {
 	}
 
 	// CREATE: Add a new beneficiary
+	// Only customers can add/edit beneficiaries
+	@PreAuthorize("hasRole('CUSTOMER')")
 	@PostMapping
 	public ResponseEntity<BeneficiaryResponseDto> createBeneficiary(
 			@Valid @RequestBody BeneficiaryRequestDto requestDto) {
@@ -47,6 +50,8 @@ public class BeneficiaryController {
 	}
 
 	// Update: update beneficiary
+	// Only customers can add/edit beneficiaries
+	@PreAuthorize("hasRole('CUSTOMER')")
 	@PutMapping("/{userId}")
 	public ResponseEntity<BeneficiaryResponseDto> updateBeneficiary(
 			@PathVariable Long userId,
@@ -56,12 +61,14 @@ public class BeneficiaryController {
 	}
 
 	// DELETE: delete a beneficiary
-	@DeleteMapping("/{userId}")
+	// Only customers can add/edit beneficiaries
+
+	@DeleteMapping("/delete/{userId}")
+	@PreAuthorize("isAuthenticated()")
 	public ResponseEntity<Map<String, String>> deleteBeneficiary(
-			@PathVariable Long userId,
-			@PathVariable String accountNumber) {
+			@PathVariable Long userId) {
 		try {
-			beneficiaryService.deleteBeneficiary(userId, accountNumber);
+			beneficiaryService.deleteBeneficiary(userId);
 			Map<String, String> response = new HashMap<>();
 			response.put("message", "Beneficiary deleted successfully!");
 			return ResponseEntity.ok(response);
