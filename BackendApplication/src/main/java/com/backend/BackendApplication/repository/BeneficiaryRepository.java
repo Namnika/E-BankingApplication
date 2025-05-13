@@ -21,5 +21,5 @@ public interface BeneficiaryRepository extends JpaRepository<Beneficiary, Long> 
     Optional<Beneficiary> findByUserIdAndAccountNumber(Long userId, String accountNumber);
 
     // delete a beneficiary by user and account number
-    void deleteByUserIdAndAccountNumber(Long userId, String accountNumber);
+    void deleteByUserId(Long userId);
 }

@@ -18,6 +18,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	// 2. update user
 
 	// Custom Methods/Queries:
+	// find user by username (used for CustomUserDetailsService)
+	Optional<User> findByUsername(String username);
+
 	// find user by email (ex. login)
 	Optional<User> findByEmail(String email);
 
@@ -27,7 +30,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 	// check if user exists by email
 	boolean existsByEmail(String email);
 
-	// find users by name (case-insensitive)
+	// check if user exists by account number
+	boolean existsByAccountNumber(String accountNumber);
+
+	// find all users by fullName (case-insensitive)
 	List<User> findByFullNameIgnoreCase(String fullName);
 
 }
