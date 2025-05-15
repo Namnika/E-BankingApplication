@@ -1,0 +1,105 @@
+/* Auth.css */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(120deg, #0f2027, #2c5364, #203a43);
+  padding: 60px 0;
+}
+
+.auth-card {
+  background: #fff;
+  padding: 2.5rem 2rem;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(44, 83, 100, 0.18);
+  width: 400px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2c5364;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.auth-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 0.98rem;
+  color: #203a43;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.form-group input {
+  padding: 0.7rem 0.9rem;
+  border: 1px solid #b0bec5;
+  border-radius: 7px;
+  font-size: 1rem;
+  background: #f7fafc;
+  transition: border 0.2s;
+}
+
+.form-group input:focus {
+  border: 1.5px solid #2c5364;
+  outline: none;
+  background: #e3f2fd;
+}
+
+.auth-btn {
+  margin-top: 0.5rem;
+  padding: 0.8rem 0;
+  background: linear-gradient(90deg, #0f2027, #2c5364);
+  color: #fff;
+  border: none;
+  border-radius: 7px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  letter-spacing: 1px;
+}
+
+.auth-btn:hover {
+  background: linear-gradient(90deg, #2c5364, #0f2027);
+}
+
+.auth-footer {
+  margin-top: 1.2rem;
+  font-size: 0.97rem;
+  color: #607d8b;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.auth-footer a {
+  color: #2c5364;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.auth-footer a:hover {
+  color: #0f2027;
+  text-decoration: underline;
+}
