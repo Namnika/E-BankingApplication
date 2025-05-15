@@ -21,6 +21,7 @@ public class UserRegistrationDto {
 	private String password;
 
 	@Email(message = "Invalid email format")
+	@Pattern(regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", message = "Invalid email format")
 	private String email;
 
 	@Pattern(regexp = "^(\\+\\d{1,3}[- ]?)?\\d{10}$", message = "Invalid phone number format")
