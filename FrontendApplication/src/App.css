@@ -1,38 +1,246 @@
-.App {
-  text-align: center;
+/* src/App.css */
+*, html{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f4f7f6; /* Light background for the body */
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-container {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+}
+
+/* Basic Navbar Styling */
+.navbar {
+  background-color: #ffffff; /* White background for navbar */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-logo-link {
+  margin-right: 10px;
+  display: flex; /* Helps align SVG or image logo properly */
+  align-items: center;
+}
+
+.navbar-brand-name {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #2c3e50; /* Darker color for brand name */
+  text-decoration: none;
+}
+
+.navbar-menu {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-menu li {
+  margin-left: 20px;
+}
+
+.navbar-menu li a {
+  text-decoration: none;
+  color: #3498db; /* Blue for links */
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-menu li a:hover {
+  color: #2980b9; /* Darker blue on hover */
+}
+
+.navbar-user-actions {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-welcome-message {
+  margin-right: 15px;
+  color: #555;
+}
+
+.navbar-logout-button {
+  padding: 8px 15px;
+  background-color: #e74c3c; /* Red for logout */
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.App-link {
-  color: #61dafb;
+.navbar-logout-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* About Section Styling */
+
+.about-nexusbank {
+  margin-top: 40px; /* Add some space above the about section */
+  padding: 20px;
+  background-color: #fdfdfd; /* Slightly different background or keep it white */
+  border-radius: 8px;
+  /* box-shadow: 0 2px 8px rgba(0,0,0,0.04); Optional: subtle shadow */
+  border-top: 1px solid #e7e7e7; /* A gentle separator */
+}
+
+.about-nexusbank h2 {
+  color: #2c3e50; /* Consistent heading color */
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.about-nexusbank p {
+  line-height: 1.6;
+  margin-bottom: 15px;
+  color: #555; /* Readable text color */
+}
+
+.about-nexusbank ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+
+.about-nexusbank li {
+  margin-bottom: 8px;
+}
+
+/* Basic Footer Styling */
+.footer {
+  background-color: #34495e; /* Dark background for footer */
+  color: #ecf0f1; /* Light text color */
+  text-align: center;
+  padding: 20px;
+  /* margin-top: auto; Ensures footer is at the bottom if content is short */
+}
+
+.footer p {
+  margin: 5px 0;
+}
+
+.footer a {
+  color: #3498db; /* Blue for links in footer */
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* Basic HomePage Styling (Example) */
+.home-page-content {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.home-page-content h1 {
+  color: #2c3e50;
+}
+
+.dashboard-overview h2 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.widgets-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Space between widgets */
+}
+
+.widget {
+  background-color: #f9f9f9;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 20px;
+  flex: 1; /*Makes widgets share space*/
+  min-width: 250px; /* Minimum width for widgets */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.widget h3 {
+  margin-top: 0;
+  color: #3498db;
+}
+
+.widget .balance-amount {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #2ecc71; /* Green for balance */
+  margin: 10px 0;
+}
+
+.widget button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  margin-top: 10px;
+}
+
+.widget button:hover {
+  background-color: #2980b9;
+}
+
+.quick-actions-list {
+  list-style: none;
+  padding: 0;
+}
+
+.quick-actions-list li {
+  margin-bottom: 10px;
+}
+
+/* Login Styling */
+
+.form-group {
+  position: relative;
+}
+.form-group input[type="password"],
+.form-group input[type="text"] {
+  padding-right: 8.6rem; /* space for the icon */
+}
+.form-group span[aria-label] {
+  position: absolute;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #888;
 }
