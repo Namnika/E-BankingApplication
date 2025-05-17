@@ -1,17 +1,38 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "../styles/Auth.css";
 import PasswordInput from "../components/PasswordInput";
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from "../context/AuthContext";
 
-const LoginPage = ({ onLogin }) => {
-    const [form, setForm] = useState({ emailOrPhone: "", password: "" });
+const LoginPage = () => {
+    const [emailOrPhone, setEmailOrPhone] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+    const navigate = useNavigate();
+    const { setAuth } = useContext(AuthContext); // <-- get setAuth from context
 
-    const handleChange = (e) => {
-        setForm({ ...form, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        onLogin(form);
+        try {
+
+            // Make your API call here, e.g.:
+            const response = await fetch("http://localhost:8080/users/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ emailOrPhone, password }),
+            });
+            if (!response.ok) throw new Error("Login failed");
+            const data = await response.json();
+
+            // Save token and user info (customer)
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+            setAuth({ token: data.token, user: data.user });
+
+            navigate("/");
+        } catch (error) {
+            setError("Invalid Credentials : " + error.message)
+        }
     };
 
     return (
@@ -24,19 +45,20 @@ const LoginPage = ({ onLogin }) => {
                         <input
                             type="text"
                             name="emailOrPhone"
-                            value={form.emailOrPhone}
-                            onChange={handleChange}
+                            value={emailOrPhone}
+                            onChange={(e) => setEmailOrPhone(e.target.value)}
                             placeholder="Enter your email or phone"
                             required
                         />
                     </div>
                     <div className="form-group">
                         <label>Password</label>
-                        <PasswordInput name="password" value={form.password} onChange={handleChange} placeholder="Enter your password" required />
+                        <PasswordInput name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required />
                     </div>
                     <button className="auth-btn" type="submit">
                         Login
                     </button>
+                    {error && <p className="error">{error}</p>}
                 </form>
                 <div className="auth-footer">
                     <span>Don't have an account?</span>
