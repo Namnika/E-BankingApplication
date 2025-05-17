@@ -1,5 +1,6 @@
 package com.backend.BackendApplication.dto;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import lombok.Getter;
@@ -18,5 +19,5 @@ public class UserResponseDto {
     private String address;
     private String role;
     private LocalDateTime createdAt;
-
+    private BigDecimal availableBalance;
 }
