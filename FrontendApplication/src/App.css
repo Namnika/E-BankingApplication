@@ -1,5 +1,6 @@
 /* src/App.css */
-*, html{
+*,
+html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -81,25 +82,112 @@ body {
 .navbar-user-actions {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
-.navbar-welcome-message {
-  margin-right: 15px;
-  color: #555;
-}
-
-.navbar-logout-button {
-  padding: 8px 15px;
-  background-color: #e74c3c; /* Red for logout */
-  color: white;
+.user-profile-button {
+  background: none;
   border: none;
-  border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.navbar-logout-button:hover {
-  background-color: #c0392b; /* Darker red on hover */
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.welcome-message {
+  margin-right: 15px;
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-width: 200px;
+    padding: 0.5rem 0;
+    z-index: 1000;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #f5f5f5;
+}
+
+.dropdown-divider {
+    height: 1px;
+    background-color: #eee;
+    margin: 0.5rem 0;
+}
+
+.logout {
+  color: #dc3545;
+    width: 100%;
+    text-align: left;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.logout:hover {
+  background-color: #ffe4e4;
+  opacity: 0.8;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.login-button, .register-button {
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.login-button {
+    color: #007bff;
+    border: 1px solid #007bff;
+}
+
+.register-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.login-button:hover {
+    background-color: #f8f9fa;
+}
+
+.register-button:hover {
+    background-color: #0056b3;
 }
 
 /* About Section Styling */
