@@ -1,7 +1,6 @@
 package com.backend.BackendApplication.exception;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,8 +24,8 @@ public class GlobalExceptionHandler {
         ex.getBindingResult().getFieldErrors().forEach(error -> {
             errors.put(error.getField(), error.getDefaultMessage());
             // Log each error to the console
-            // System.out.println("Validation error on field: " + error.getField() + " - " +
-            // error.getDefaultMessage());
+            System.out.println("Validation error on field: " + error.getField() + " - " +
+                    error.getDefaultMessage());
         });
         return ResponseEntity.badRequest().body(errors);
     }
