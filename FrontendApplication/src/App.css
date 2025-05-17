@@ -13,7 +13,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f4f7f6; /* Light background for the body */
+  background-color: #f4f7f6;
+  /* Light background for the body */
   color: #333;
 }
 
@@ -30,12 +31,14 @@ body {
 
 /* Basic Navbar Styling */
 .navbar {
-  background-color: #ffffff; /* White background for navbar */
+  background-color: #ffffff;
+  /* White background for navbar */
   padding: 10px 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  /* Subtle shadow */
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -46,14 +49,16 @@ body {
 
 .navbar-logo-link {
   margin-right: 10px;
-  display: flex; /* Helps align SVG or image logo properly */
+  display: flex;
+  /* Helps align SVG or image logo properly */
   align-items: center;
 }
 
 .navbar-brand-name {
   font-size: 1.5em;
   font-weight: bold;
-  color: #2c3e50; /* Darker color for brand name */
+  color: #2c3e50;
+  /* Darker color for brand name */
   text-decoration: none;
 }
 
@@ -70,13 +75,15 @@ body {
 
 .navbar-menu li a {
   text-decoration: none;
-  color: #3498db; /* Blue for links */
+  color: #3498db;
+  /* Blue for links */
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
 .navbar-menu li a:hover {
-  color: #2980b9; /* Darker blue on hover */
+  color: #2980b9;
+  /* Darker blue on hover */
 }
 
 .navbar-user-actions {
@@ -115,45 +122,45 @@ body {
 }
 
 .dropdown-menu {
-    position: absolute;
-    top: 100%;
-    right: 0;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    min-width: 200px;
-    padding: 0.5rem 0;
-    z-index: 1000;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  padding: 0.5rem 0;
+  z-index: 1000;
 }
 
 .dropdown-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    color: #333;
-    text-decoration: none;
-    transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s;
 }
 
 .dropdown-item:hover {
-    background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .dropdown-divider {
-    height: 1px;
-    background-color: #eee;
-    margin: 0.5rem 0;
+  height: 1px;
+  background-color: #eee;
+  margin: 0.5rem 0;
 }
 
 .logout {
   color: #dc3545;
-    width: 100%;
-    text-align: left;
-    border: none;
-    background: none;
-    cursor: pointer;
-    font-weight: bold;
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .logout:hover {
@@ -162,47 +169,52 @@ body {
 }
 
 .auth-buttons {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
 
-.login-button, .register-button {
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    text-decoration: none;
+.login-button,
+.register-button {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 .login-button {
-    color: #007bff;
-    border: 1px solid #007bff;
+  color: #007bff;
+  border: 1px solid #007bff;
 }
 
 .register-button {
-    background-color: #007bff;
-    color: white;
+  background-color: #007bff;
+  color: white;
 }
 
 .login-button:hover {
-    background-color: #f8f9fa;
+  background-color: #f8f9fa;
 }
 
 .register-button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 /* About Section Styling */
 
 .about-nexusbank {
-  margin-top: 40px; /* Add some space above the about section */
+  margin-top: 40px;
+  /* Add some space above the about section */
   padding: 20px;
-  background-color: #fdfdfd; /* Slightly different background or keep it white */
+  background-color: #fdfdfd;
+  /* Slightly different background or keep it white */
   border-radius: 8px;
   /* box-shadow: 0 2px 8px rgba(0,0,0,0.04); Optional: subtle shadow */
-  border-top: 1px solid #e7e7e7; /* A gentle separator */
+  border-top: 1px solid #e7e7e7;
+  /* A gentle separator */
 }
 
 .about-nexusbank h2 {
-  color: #2c3e50; /* Consistent heading color */
+  color: #2c3e50;
+  /* Consistent heading color */
   border-bottom: 2px solid #eee;
   padding-bottom: 10px;
   margin-bottom: 20px;
@@ -211,7 +223,8 @@ body {
 .about-nexusbank p {
   line-height: 1.6;
   margin-bottom: 15px;
-  color: #555; /* Readable text color */
+  color: #555;
+  /* Readable text color */
 }
 
 .about-nexusbank ul {
@@ -225,8 +238,10 @@ body {
 
 /* Basic Footer Styling */
 .footer {
-  background-color: #34495e; /* Dark background for footer */
-  color: #ecf0f1; /* Light text color */
+  background-color: #34495e;
+  /* Dark background for footer */
+  color: #ecf0f1;
+  /* Light text color */
   text-align: center;
   padding: 20px;
   /* margin-top: auto; Ensures footer is at the bottom if content is short */
@@ -237,7 +252,8 @@ body {
 }
 
 .footer a {
-  color: #3498db; /* Blue for links in footer */
+  color: #3498db;
+  /* Blue for links in footer */
   text-decoration: none;
 }
 
@@ -266,7 +282,8 @@ body {
 .widgets-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px; /* Space between widgets */
+  gap: 20px;
+  /* Space between widgets */
 }
 
 .widget {
@@ -274,8 +291,10 @@ body {
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   padding: 20px;
-  flex: 1; /*Makes widgets share space*/
-  min-width: 250px; /* Minimum width for widgets */
+  flex: 1;
+  /*Makes widgets share space*/
+  min-width: 250px;
+  /* Minimum width for widgets */
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
@@ -287,7 +306,8 @@ body {
 .widget .balance-amount {
   font-size: 1.8em;
   font-weight: bold;
-  color: #2ecc71; /* Green for balance */
+  color: #2ecc71;
+  /* Green for balance */
   margin: 10px 0;
 }
 
@@ -320,10 +340,13 @@ body {
 .form-group {
   position: relative;
 }
+
 .form-group input[type="password"],
 .form-group input[type="text"] {
-  padding-right: 8.6rem; /* space for the icon */
+  padding-right: 8.6rem;
+  /* space for the icon */
 }
+
 .form-group span[aria-label] {
   position: absolute;
   right: 1.5rem;
