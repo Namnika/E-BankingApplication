@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <footer className="footer">
             <p>&copy; {currentYear} {brandName}. All Rights Reserved.</p>
-            <p>This project is associated to MCA Final Year Capstone Project in Jain (Deemed-to-be-University). Made By Namnika Janbandhu</p>
+            <p>This project is associated to MCA Final Year Capstone Project in Jain (Deemed-to-be-University). Made with ❤ By Namnika Janbandhu</p>
         </footer>
     )
 }
