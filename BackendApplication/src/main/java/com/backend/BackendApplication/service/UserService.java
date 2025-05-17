@@ -224,6 +224,7 @@ public class UserService {
 		dto.setAddress(user.getAddress());
 		dto.setRole(user.getRole());
 		dto.setAccountNumber(user.getAccountNumber());
+		dto.setAvailableBalance(user.getAvailableBalance());
 		dto.setCreatedAt(user.getDateTime());
 		return dto;
 	}
