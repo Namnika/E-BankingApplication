@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 // import Logo from "../../assests/images/logo.svg";
 import { AuthContext } from "../context/AuthContext";
 import { useState, useContext, useRef } from "react";
-import { FaCircleUser, FaUsers } from "react-icons/fa6";
+import { FaUsers } from "react-icons/fa6";
 import { MdOutlineLogout, MdAccountBalanceWallet, MdAccountBalance, MdManageAccounts } from "react-icons/md";
 const Navbar = () => {
     const brandName = "NexusBank";
@@ -52,7 +52,7 @@ const Navbar = () => {
                         <div className="user-profile">
                             <button className="user-profile-button" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
                                 <div className="user-info">
-                                    <FaCircleUser className="user-avatar" fill="lightgrey" />
+                                    <img src={`https://api.dicebear.com/9.x/initials/svg?seed=${auth.user.fullName}&fontSize=75&chars=2&size=32&radius=50&backgroundColor=5e35b1,3949ab&backgroundType=gradientLinear&backgroundRotation=0&scale=50&clip=true&textColor=ffffff&fontFamily=Verdana`} alt="Profile" />
 
                                     <span className="welcome-message">{welcomeMessage} </span>
                                 </div>
