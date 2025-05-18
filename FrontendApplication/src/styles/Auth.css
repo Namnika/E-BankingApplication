@@ -38,6 +38,26 @@
   gap: 1.1rem;
 }
 
+/* Add to Auth.css */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.checkbox-group label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.checkbox-group input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -104,11 +124,10 @@
   text-decoration: underline;
 }
 
-.error{
-  color: #FF0B55;
+.error {
+  color: #ff0b55;
   font-weight: 600;
   font-size: 0.9rem;
   margin: 0.5rem 0;
   letter-spacing: 1px;
-
 }
