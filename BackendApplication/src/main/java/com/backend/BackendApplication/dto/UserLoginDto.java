@@ -15,4 +15,6 @@ public class UserLoginDto {
 
     @NotBlank(message = "Password cannot be empty")
     private String password;
+
+    private String role = "CUSTOMER"; // Default role is CUSTOMER
 }
