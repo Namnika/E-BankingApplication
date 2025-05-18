@@ -3,6 +3,10 @@
 import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import TransferForm from '../components/TransferForm';
+import DepositForm from '../components/DepositForm';
+import WithdrawForm from '../components/WithdrawForm';
+import maskAccountNumber from '../components/MaskAccountNumber';
 const Transactions = () => {
   const { auth } = useContext(AuthContext);
   const [transactions, setTransactions] = useState([]);
@@ -17,7 +21,20 @@ const Transactions = () => {
   });
 
 
-  // const API_BASE_URL = '';
+  const [showForm, setShowForm] = useState(null); // 'transfer', 'deposit', 'withdraw', or null
+
+  const renderForm = () => {
+    switch (showForm) {
+      case 'transfer':
+        return <TransferForm />;
+      case 'deposit':
+        return <DepositForm />;
+      case 'withdraw':
+        return <WithdrawForm />;
+      default:
+        return null;
+    }
+  };
 
 
   // Fetch latest transactions 
@@ -185,6 +202,8 @@ const Transactions = () => {
     return <div>Loading user data...</div>;
   }
 
+
+
   return (
     <div className="transactions-container">
       <div className="transactions-header">
@@ -195,7 +214,7 @@ const Transactions = () => {
             <p className="balance">₹ {auth.user.availableBalance}</p>
           </div>
           <div className="account-info">
-            <p>Account Number: {auth.user.accountNumber}</p>
+            <p>Account Number: {maskAccountNumber(auth.user.accountNumber)}</p>
           </div>
         </div>
       </div>
@@ -247,7 +266,26 @@ const Transactions = () => {
         <button onClick={resetFilters}>Reset Filters</button>
       </div>
 
+      {/* Quick Actions */}
+      <div className="quick-actions">
+        <button onClick={() => setShowForm('transfer')}>
+          Make a Transfer
+        </button>
+        <button onClick={() => setShowForm('deposit')}>
+          Deposit Money
+        </button>
+        <button onClick={() => setShowForm('withdraw')}>
+          Withdraw Money
+        </button>
+      </div>
 
+      {/* Form Section */}
+      {showForm && (
+        <div className="form-section">
+          <button className="close-btn" onClick={() => setShowForm(null)}>×</button>
+          {renderForm()}
+        </div>
+      )}
 
       {/* Transactions List */}
       <div className="transactions-list">
