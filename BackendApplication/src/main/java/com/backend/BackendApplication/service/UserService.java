@@ -61,6 +61,16 @@ public class UserService {
 			throw new RuntimeException("Email is already in use!");
 		}
 
+		// Check if phone number already exists
+		if (userRepository.findByPhoneNumber(dto.getPhoneNumber()).isPresent()) {
+			throw new RuntimeException("Phone number already exists");
+		}
+
+		// Validate role
+		if (dto.getRole() != null && !dto.getRole().equals("ADMIN") && !dto.getRole().equals("CUSTOMER")) {
+			throw new RuntimeException("Invalid role. Must be either ADMIN or CUSTOMER");
+		}
+
 		// Hash the password before saving
 		String hashedPassword = passwordEncoder.encode(dto.getPassword());
 		// otherwise create new user
@@ -74,7 +84,7 @@ public class UserService {
 		user.setPhoneNumber(dto.getPhoneNumber());
 		user.setFullName(dto.getFullName());
 		user.setAddress(dto.getAddress());
-		user.setRole("CUSTOMER"); // default role
+		user.setRole(dto.getRole() != null ? dto.getRole() : "CUSTOMER"); // default role
 		user.setAccountNumber(generateAccountNumber()); // automatically the backend will generate account number for
 														// user
 		user.setAvailableBalance(BigDecimal.ZERO); // Initialize balance to zero
@@ -171,6 +181,11 @@ public class UserService {
 			throw new RuntimeException("Invalid password");
 		}
 
+		// 3. Check if user is trying to login as admin
+		if ("ADMIN".equals(dto.getRole()) && !"ADMIN".equals(user.getRole())) {
+			throw new RuntimeException("You don't have admin privileges");
+		}
+
 		// Generate JWT token
 		String token = generateToken(user);
 
@@ -178,6 +193,7 @@ public class UserService {
 		LoginResponseDto response = new LoginResponseDto();
 		response.setToken(token);
 		response.setUser(mapToResponseDto(user));
+		response.setRole(user.getRole());
 
 		return response;
 
