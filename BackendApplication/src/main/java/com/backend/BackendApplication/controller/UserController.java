@@ -56,7 +56,7 @@ public class UserController {
 
     // Update user
     @PreAuthorize("hasRole('ADMIN') or #id == authentication.principal.user.id")
-    @PutMapping("/{id}")
+    @PutMapping("/{id}/update")
     public ResponseEntity<UserResponseDto> updateUser(@PathVariable Long id,
             @Valid @RequestBody UserRegistrationDto dto) {
         UserResponseDto response = userService.updateUser(id, dto);
