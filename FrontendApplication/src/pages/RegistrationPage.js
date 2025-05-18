@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../styles/Auth.css";
 import PasswordInput from "../components/PasswordInput";
-
+import { useNavigate } from 'react-router-dom';
 const RegisterPage = () => {
 	const [form, setForm] = useState({
 		username: "",
@@ -10,10 +10,14 @@ const RegisterPage = () => {
 		phoneNumber: "",
 		fullName: "",
 		address: "",
+		role: 'CUSTOMER' // Default role
+
 	});
 
 	const [message, setMessage] = useState("");
 	const [errors, setErrors] = useState({});
+
+	const navigate = useNavigate();
 
 	const handleChange = (e) => {
 		setForm({ ...form, [e.target.name]: e.target.value });
@@ -34,6 +38,7 @@ const RegisterPage = () => {
 
 			if (response.ok) {
 				setMessage("Registration successful!");
+				navigate('/login');
 				setForm({
 					username: "",
 					password: "",
@@ -123,6 +128,19 @@ const RegisterPage = () => {
 							required
 						/>
 					</div>
+
+					<div className="form-group">
+						<label>Role</label>
+						<select
+							name="role"
+							value={form.role}
+							onChange={handleChange}
+						>
+							<option value="CUSTOMER">Customer</option>
+							<option value="ADMIN">Admin</option>
+						</select>
+					</div>
+
 					<button className="auth-btn" type="submit">
 						Register
 					</button>
