@@ -20,9 +20,9 @@ const Navbar = () => {
     let welcomeMessage = "";
     if (auth && auth.user) {
         if (auth.user.role === "ADMIN") {
-            welcomeMessage = "Welcome admin!";
+            welcomeMessage = "Welcome admin !";
         } else if (auth.user.role === "CUSTOMER") {
-            welcomeMessage = `Welcome ${auth.user.username}!`;
+            welcomeMessage = `Welcome ${auth.user.username} !`;
         }
     }
 
