@@ -164,12 +164,12 @@ public class TransactionService {
 	}
 
 	// Get latest 10 transactions done by sender
-	public List<TransactionResponseDto> findTop10TransactionBySender(Long id) {
-		if (!userRepository.existsById(id)) {
+	public List<TransactionResponseDto> findTop10TransactionBySender(Long senderId) {
+		if (!userRepository.existsById(senderId)) {
 			throw new RuntimeException("Sender Not Found!");
 		}
 
-		List<Transaction> transactions = transactionRepository.findTop10BySenderIdOrderByTransactionDateDesc(id);
+		List<Transaction> transactions = transactionRepository.findTop10BySenderIdOrderByTransactionDateDesc(senderId);
 
 		// Map to Dtos
 		return transactions.stream().map(this::mapToResponseDto).collect(Collectors.toList());
@@ -237,6 +237,7 @@ public class TransactionService {
 		TransactionResponseDto response = new TransactionResponseDto();
 
 		response.setId(transaction.getTransactionId());
+		response.setSenderId(transaction.getTransactionSender().getId());
 		response.setSenderName(transaction.getTransactionSender().getFullName());
 		response.setReceiverName(transaction.getTransactionReceiver().getFullName());
 		response.setAmount(transaction.getTransactionAmount());

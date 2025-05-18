@@ -17,6 +17,9 @@ public class TransactionResponseDto {
     private Long id;
 
     @NotNull
+    private Long senderId;
+
+    @NotNull
     private String senderName;
 
     @NotNull
