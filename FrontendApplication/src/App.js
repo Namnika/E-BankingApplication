@@ -7,10 +7,11 @@ import LoginPage from './pages/LoginPage';
 import RegistrationPage from './pages/RegistrationPage';
 import './App.css';
 import Layout from './components/layout/Layout';
-import TransactionPage from './pages/TransactionPage';
+import TransactionsPage from './pages/TransactionsPage';
 import BeneficiaryPage from './pages/BeneficiaryPage';
 import UserProfilePage from './pages/UserProfilePage';
 import ProtectedRoute from './components/ProtectedRoute';
+import AccountDetailsPage from './pages/AccountDetailsPage';
 
 
 function App() {
@@ -31,7 +32,8 @@ function App() {
                 <Route path="/register" element={<RegistrationPage />} />
 
                 {/* Protected routes */}
-                <Route path="/transactions" element={<ProtectedRoute><TransactionPage /></ProtectedRoute>} />
+                <Route path="/account-details" element={<ProtectedRoute><AccountDetailsPage /></ProtectedRoute>} />
+                <Route path="/transactions" element={<ProtectedRoute><TransactionsPage /></ProtectedRoute>} />
                 <Route path="/beneficiaries" element={<ProtectedRoute><BeneficiaryPage /></ProtectedRoute>} />
                 <Route path="/user" element={<ProtectedRoute><UserProfilePage /></ProtectedRoute>} />
 
