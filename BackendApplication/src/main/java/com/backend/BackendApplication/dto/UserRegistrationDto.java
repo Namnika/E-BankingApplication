@@ -29,4 +29,6 @@ public class UserRegistrationDto {
 	private String fullName;
 	private String address;
 
+	private String role = "CUSTOMER"; // Default role is CUSTOMER
+
 }
