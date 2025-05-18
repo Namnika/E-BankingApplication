@@ -4,9 +4,9 @@ import { AuthContext } from "../context/AuthContext";
 import { useState, useContext, useRef } from "react";
 import { FaUsers } from "react-icons/fa6";
 import { MdOutlineLogout, MdAccountBalanceWallet, MdAccountBalance, MdManageAccounts } from "react-icons/md";
+import nexusBankLogo from "../assests/images/nexusbank-logo.jpg";
 const Navbar = () => {
     const brandName = "NexusBank";
-    const brandLogo = "Logo";
     const navigate = useNavigate();
     const { auth, logout } = useContext(AuthContext);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -30,9 +30,9 @@ const Navbar = () => {
         <nav className="navbar">
             <div className="navbar-brand">
                 <Link to={"/"} className="navbar-logo-link" style={{ fontWeight: "bold", fontSize: "1.5rem" }}>
-                    {brandLogo}
-                    {/* <img src={brandLogo} alt="NexusBank-Logo" style={{height: "40px"}} /> */}
-                    {/* use logo image  */}
+
+                    <img src={nexusBankLogo} alt="NexusBank-Logo" style={{ height: "60px" }} />
+
                 </Link>
                 <Link to={"/"} className="navbar-brand-name" >
                     {brandName}
