@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import maskAccountNumber from '../components/MaskAccountNumber';
 
 const AccountDetailsPage = () => {
     const { auth } = useContext(AuthContext);
@@ -20,7 +21,7 @@ const AccountDetailsPage = () => {
                         </div>
                         <div className="summary-card">
                             <h3>Account Number</h3>
-                            <p>{auth.user.accountNumber}</p>
+                            <p>{maskAccountNumber(auth.user.accountNumber)}</p>
                         </div>
                         <div className="summary-card">
                             <h3>Account Type</h3>
@@ -29,21 +30,6 @@ const AccountDetailsPage = () => {
                     </div>
                 </section>
 
-                <section className="recent-transactions">
-                    <h2>Recent Transactions</h2>
-                    <div className="transactions-list">
-                        {auth.user.recentTransactions?.map(transaction => (
-                            <div key={transaction.id} className="transaction-item">
-                                <div className="transaction-info">
-                                    <p className="transaction-type">{transaction.role}</p>
-                                    <p className="transaction-date">{transaction.transactionDate}</p>
-                                </div>
-                                <p className="transaction-amount">₹ {transaction.amount}</p>
-                            </div>
-                        ))}
-                    </div>
-                    <button>View All Transactions</button>
-                </section>
 
                 <section className="account-features">
                     <h2>Account Features</h2>
