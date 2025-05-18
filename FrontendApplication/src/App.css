@@ -559,3 +559,56 @@ th {
 .error {
   color: #dc3545;
 }
+
+/* make transfer styles */
+.form-section {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.success {
+  color: #28a745;
+  margin-top: 0.5rem;
+}
+
+.deposit-button, .transfer-button, .withdraw-button{
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  background-color: #28a745;
+  cursor: pointer;
+}
