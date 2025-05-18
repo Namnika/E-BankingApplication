@@ -3,6 +3,7 @@ import "../styles/Auth.css";
 import PasswordInput from "../components/PasswordInput";
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from "../context/AuthContext";
+import axios from 'axios';
 
 const LoginPage = () => {
     const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -15,16 +16,28 @@ const LoginPage = () => {
         e.preventDefault();
         try {
 
-            // Make your API call here, e.g.:
-            const response = await fetch("http://localhost:8080/users/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ emailOrPhone, password }),
+            const credentials = {
+                emailOrPhone: emailOrPhone,
+                password: password
+            };
+
+            const response = await fetch('http://localhost:8080/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(credentials)
             });
-            if (!response.ok) throw new Error("Login failed");
+
+            if (!response.ok) {
+                throw new Error('Login failed');
+            }
+
             const data = await response.json();
 
-            // Save token and user info (customer)
+            console.log('Login response:', data); // Debug log
+
+            // Save token and user info
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
             setAuth({ token: data.token, user: data.user });
