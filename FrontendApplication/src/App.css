@@ -239,12 +239,10 @@ body {
 /* Basic Footer Styling */
 .footer {
   background-color: #34495e;
-  /* Dark background for footer */
   color: #ecf0f1;
-  /* Light text color */
   text-align: center;
   padding: 20px;
-  /* margin-top: auto; Ensures footer is at the bottom if content is short */
+  margin-top: auto; /*Ensures footer is at the bottom if content is short*/
 }
 
 .footer p {
@@ -354,4 +352,210 @@ body {
   transform: translateY(-50%);
   cursor: pointer;
   color: #888;
+}
+
+/* user Profile details specific styles */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.info-item {
+  margin-bottom: 1rem;
+}
+
+.info-item label {
+  display: block;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+/* Account Details specific styles */
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.balance {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+.transactions-list {
+  margin: 1rem 0;
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.actions-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.edit-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.edit-button:hover {
+  background: #0056b3;
+}
+
+/* Transactions styles */
+.transactions-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.transactions-header {
+  margin-bottom: 2rem;
+}
+
+.account-summary {
+  display: flex;
+  gap: 2rem;
+  margin: 1rem 0;
+}
+
+.balance-card {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  min-width: 200px;
+}
+
+.balance {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #28a745;
+}
+
+.filters-section {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-group label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.filter-group input,
+.filter-group select {
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.transactions-list {
+  margin: 2rem 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #f8f9fa;
+  font-weight: 600;
+}
+
+.credit {
+  color: #28a745;
+}
+
+.debit {
+  color: #dc3545;
+}
+
+.status {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.status.success {
+  background: #d4edda;
+  color: #155724;
+}
+
+.status.failed {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.status.pending {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.quick-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.quick-actions button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.quick-actions button:hover {
+  background: #0056b3;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+.error {
+  color: #dc3545;
 }
