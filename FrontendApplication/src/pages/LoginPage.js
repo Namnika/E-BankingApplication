@@ -11,6 +11,7 @@ const LoginPage = () => {
     const [error, setError] = useState("");
     const navigate = useNavigate();
     const { setAuth } = useContext(AuthContext); // <-- get setAuth from context
+    const [isAdmin, setIsAdmin] = useState(false);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -18,7 +19,8 @@ const LoginPage = () => {
 
             const credentials = {
                 emailOrPhone: emailOrPhone,
-                password: password
+                password: password,
+                role: isAdmin ? "ADMIN" : "CUSTOMER"
             };
 
             const response = await fetch('http://localhost:8080/users/login', {
@@ -67,6 +69,17 @@ const LoginPage = () => {
                     <div className="form-group">
                         <label>Password</label>
                         <PasswordInput name="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" required />
+                    </div>
+                    {/* Add admin login checkbox */}
+                    <div className="form-group checkbox-group">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={isAdmin}
+                                onChange={(e) => setIsAdmin(e.target.checked)}
+                            />
+                            Login as Admin
+                        </label>
                     </div>
                     <button className="auth-btn" type="submit">
                         Login
