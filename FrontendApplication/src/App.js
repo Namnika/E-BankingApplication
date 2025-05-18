@@ -33,7 +33,7 @@ function App() {
 
                 {/* Protected routes */}
                 <Route path="/account-details" element={<ProtectedRoute><AccountDetailsPage /></ProtectedRoute>} />
-                <Route path="/transactions" element={<ProtectedRoute><TransactionsPage /></ProtectedRoute>} />
+                <Route path="/transactions" element={<ProtectedRoute requiredRole="ADMIN"><TransactionsPage /></ProtectedRoute>} />
                 <Route path="/beneficiaries" element={<ProtectedRoute><BeneficiaryPage /></ProtectedRoute>} />
                 <Route path="/user" element={<ProtectedRoute><UserProfilePage /></ProtectedRoute>} />
 
