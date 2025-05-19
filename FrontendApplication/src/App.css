@@ -62,18 +62,18 @@ body {
   text-decoration: none;
 }
 
-.navbar-menu {
+.navbar-links {
   list-style: none;
   display: flex;
   margin: 0;
   padding: 0;
 }
 
-.navbar-menu li {
+.navbar-links li a{
   margin-left: 20px;
 }
 
-.navbar-menu li a {
+.navbar-links li a {
   text-decoration: none;
   color: #3498db;
   /* Blue for links */
@@ -81,7 +81,7 @@ body {
   transition: color 0.3s ease;
 }
 
-.navbar-menu li a:hover {
+.navbar-links li a:hover {
   color: #2980b9;
   /* Darker blue on hover */
 }
